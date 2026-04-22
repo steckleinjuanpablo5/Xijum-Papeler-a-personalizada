@@ -1,0 +1,53 @@
+﻿<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Xijúm | Checkout</title>
+    <meta
+      name="description"
+      content="Resumen de compra de Xijúm antes de proceder al pago."
+    />
+    <link rel="stylesheet" href="../assets/css/main.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <a href="../index.html" class="brand" aria-label="Ir al inicio de Xijúm">
+          <span>Xijúm</span>
+        </a>
+
+        <nav class="main-nav" aria-label="Navegación principal">
+          <ul>
+            <li><a href="../index.html#hero">Inicio</a></li>
+            <li><a href="../index.html#catalogo">Catálogo</a></li>
+            <li><a href="../index.html#carrito">Carrito</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main class="checkout-page">
+      <section class="summary-section" aria-labelledby="checkout-title">
+        <div class="container">
+          <header>
+            <h1 id="checkout-title">Resumen de compra</h1>
+            <p>Revisa tus productos antes de continuar al pago.</p>
+          </header>
+
+          <div id="checkout-items" class="cart-items" aria-live="polite"></div>
+
+          <div id="checkout-summary" class="summary-content"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>&copy; Xijúm. Todos los derechos reservados.</p>
+      </div>
+    </footer>
+
+    <script type="module" src="../assets/js/checkout.js"></script>
+  </body>
+</html>

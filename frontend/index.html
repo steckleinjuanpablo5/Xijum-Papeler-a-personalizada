@@ -1,0 +1,112 @@
+﻿<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Xijúm | Papelería creativa</title>
+    <meta
+      name="description"
+      content="Tienda de papelería creativa Xijúm. Productos personalizados, catálogo, carrito y compra en línea."
+    />
+    <link rel="stylesheet" href="./assets/css/main.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <a href="./index.html" class="brand" aria-label="Ir al inicio de Xijúm">
+          <span>Xijúm</span>
+        </a>
+
+        <nav class="main-nav" aria-label="Navegación principal">
+          <ul>
+            <li><a href="#hero">Inicio</a></li>
+            <li><a href="#catalogo">Catálogo</a></li>
+            <li><a href="#carrito">Carrito</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section id="hero" class="hero" aria-labelledby="hero-title">
+        <div class="container">
+          <p>Tienda online</p>
+          <h1 id="hero-title">Papelería creativa y personalizada</h1>
+          <p>
+            Explora productos de Xijúm, agrégalos al carrito y finaliza tu compra
+            de forma segura.
+          </p>
+          <a href="#catalogo">Ver catálogo</a>
+        </div>
+      </section>
+
+      <section id="catalogo" class="catalog-section" aria-labelledby="catalog-title">
+        <div class="container">
+          <header>
+            <p>Colección</p>
+            <h2 id="catalog-title">Catálogo</h2>
+          </header>
+
+          <aside class="filters" aria-labelledby="filters-title">
+            <h3 id="filters-title">Filtros</h3>
+            <form>
+              <label for="search">Buscar producto</label>
+              <input
+                type="search"
+                id="search"
+                name="search"
+                placeholder="Buscar por nombre"
+              />
+
+              <label for="category">Categoría</label>
+              <select id="category" name="category">
+                <option value="all">Todas</option>
+              </select>
+            </form>
+          </aside>
+
+          <section
+            id="catalog-grid"
+            class="catalog-grid"
+            aria-label="Listado de productos"
+          ></section>
+        </div>
+      </section>
+
+      <section id="carrito" class="cart-section" aria-labelledby="cart-title">
+        <div class="container">
+          <header>
+            <h2 id="cart-title">Carrito</h2>
+            <p>Los productos seleccionados aparecerán aquí.</p>
+          </header>
+
+          <div class="cart-items" aria-live="polite">
+            <p>Tu carrito está vacío.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="summary-section" aria-labelledby="summary-title">
+        <div class="container">
+          <header>
+            <h2 id="summary-title">Resumen de compra</h2>
+          </header>
+
+          <div class="summary-content">
+            <p>Subtotal: $0.00</p>
+            <p>Total: $0.00</p>
+            <button type="button" disabled>Continuar al pago</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>&copy; Xijúm. Todos los derechos reservados.</p>
+      </div>
+    </footer>
+
+    <script type="module" src="./assets/js/catalog.js"></script>
+  </body>
+</html>
