@@ -1,4 +1,6 @@
-﻿const checkoutItemsContainer = document.querySelector('#checkout-items');
+﻿import { FRONTEND_CONFIG } from './config.js';
+
+const checkoutItemsContainer = document.querySelector('#checkout-items');
 const checkoutSummaryContainer = document.querySelector('#checkout-summary');
 
 if (!checkoutItemsContainer || !checkoutSummaryContainer) {
@@ -59,6 +61,32 @@ const renderItems = () => {
   });
 };
 
+const startCheckout = async () => {
+  try {
+    const response = await fetch(
+      `${FRONTEND_CONFIG.API_BASE_URL}/api/create-checkout-session`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ items: cart })
+      }
+    );
+
+    const data = await response.json();
+
+    if (!response.ok || !data.url) {
+      throw new Error(data.error || 'Unable to start checkout.');
+    }
+
+    window.location.href = data.url;
+  } catch (error) {
+    console.error(error);
+    alert('No fue posible iniciar el pago. Intenta de nuevo.');
+  }
+};
+
 const renderSummary = () => {
   const subtotal = getSubtotal();
 
@@ -80,8 +108,12 @@ const renderSummary = () => {
   const startCheckoutButton = document.querySelector('#start-checkout');
 
   if (startCheckoutButton) {
-    startCheckoutButton.addEventListener('click', () => {
-      alert('El pago con Stripe se conectará en la Fase 6.');
+    startCheckoutButton.addEventListener('click', async () => {
+      startCheckoutButton.disabled = true;
+      startCheckoutButton.textContent = 'Redirigiendo...';
+      await startCheckout();
+      startCheckoutButton.disabled = false;
+      startCheckoutButton.textContent = 'Ir al pago seguro';
     });
   }
 };
