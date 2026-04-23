@@ -3,43 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Xijúm | Papelería creativa y personalizada</title>
+    <title>Xijúm | Personalización</title>
     <link rel="stylesheet" href="./assets/css/main.css" />
-    <link rel="stylesheet" href="./assets/css/personalization-v1.css" />
   </head>
   <body>
-    <header class="site-header">
-      <div class="container">
-        <a href="./index-v9.html" class="brand"><span>Xijúm</span></a>
-        <nav class="main-nav" aria-label="Navegación principal">
-          <ul>
-            <li><a href="#hero">Inicio</a></li>
-            <li><a href="#catalogo">Catálogo</a></li>
-            <li><a href="#carrito">Carrito</a></li>
-          </ul>
-        </nav>
-      </div>
-    </header>
-
     <main>
-      <section id="hero" class="hero-section">
-        <div class="container">
-          <p>Tienda online</p>
-          <h1>Papelería creativa y personalizada</h1>
-          <p>Explora productos de Xijúm, personaliza libretas y agendas, agrégalos al carrito y finaliza tu compra.</p>
-          <a href="#catalogo">Ver catálogo</a>
-        </div>
-      </section>
-
       <section id="catalogo" class="catalog-section" aria-labelledby="catalog-title">
         <div class="container">
           <header>
-            <p>Colección</p>
+            <p>Catálogo con personalización</p>
             <h2 id="catalog-title">Catálogo</h2>
           </header>
 
           <div class="catalog-layout">
-            <aside class="filters-panel" aria-label="Filtros del catálogo">
+            <aside class="filters-panel">
               <h3>Filtros</h3>
               <label for="search">Buscar producto</label>
               <input id="search" type="search" placeholder="Buscar por nombre" />
@@ -60,7 +37,6 @@
             <h2 id="cart-title">Carrito</h2>
             <p>Los productos seleccionados aparecerán aquí.</p>
           </header>
-
           <div class="cart-items" aria-live="polite">
             <p>Tu carrito está vacío.</p>
           </div>
@@ -85,8 +61,7 @@
 
     <section id="customization-modal" aria-labelledby="customization-title" aria-modal="true" role="dialog" hidden>
       <div class="customization-modal__content">
-        <button type="button" id="customization-close" aria-label="Cerrar personalización">×</button>
-
+        <button type="button" id="customization-close">×</button>
         <header>
           <h2 id="customization-title">Personaliza tu producto</h2>
           <p id="customization-product-name">Producto</p>
@@ -125,12 +100,6 @@
       </div>
     </section>
 
-    <footer class="site-footer">
-      <div class="container">
-        <p>&copy; Xijúm. Todos los derechos reservados.</p>
-      </div>
-    </footer>
-
-    <script type="module" src="./assets/js/catalog-v7.js"></script>
+    <script type="module" src="./assets/js/catalog-v5.js"></script>
   </body>
 </html>

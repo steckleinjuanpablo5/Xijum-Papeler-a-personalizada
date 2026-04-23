@@ -74,7 +74,7 @@ const renderItems = () => {
   if (!cart.length) {
     checkoutItemsContainer.innerHTML = `
       <p>No hay productos en tu carrito.</p>
-      <p><a href="../index-v9.html#catalogo">Volver al catálogo</a></p>
+      <p><a href="../index-v8.html#catalogo">Volver al catálogo</a></p>
     `;
     return;
   }

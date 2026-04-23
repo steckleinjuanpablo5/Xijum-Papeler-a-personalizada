@@ -1,0 +1,205 @@
+﻿const STORAGE_KEY = 'xijum_cart_v2';
+
+const normalizeCartItem = (item) => {
+  const quantity = Number(item?.quantity);
+  const price = Number(item?.price);
+
+  return {
+    ...item,
+    quantity: Number.isFinite(quantity) && quantity > 0 ? quantity : 1,
+    price: Number.isFinite(price) ? price : 0,
+    currency: item?.currency || 'MXN'
+  };
+};
+
+const getStoredCart = () => {
+  const rawCart = localStorage.getItem(STORAGE_KEY);
+
+  if (!rawCart) {
+    return [];
+  }
+
+  try {
+    const parsedCart = JSON.parse(rawCart);
+    return Array.isArray(parsedCart)
+      ? parsedCart.map(normalizeCartItem).filter((item) => item.id && item.name)
+      : [];
+  } catch {
+    return [];
+  }
+};
+
+const cart = getStoredCart();
+
+const cartItemsContainer = document.querySelector('.cart-items');
+const summaryContent = document.querySelector('.summary-content');
+
+if (!cartItemsContainer || !summaryContent) {
+  throw new Error('Cart UI elements were not found in index-v9.html');
+}
+
+const saveCart = () => {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(cart));
+};
+
+const formatPrice = (price, currency = 'MXN') =>
+  new Intl.NumberFormat('es-MX', {
+    style: 'currency',
+    currency
+  }).format(price);
+
+const getSubtotal = () =>
+  cart.reduce((total, item) => total + item.price * item.quantity, 0);
+
+const formatCustomization = (customization) => {
+  if (!customization) {
+    return '';
+  }
+
+  const parts = [];
+
+  if (customization.color) {
+    parts.push(`<p><strong>Color:</strong> ${customization.color}</p>`);
+  }
+
+  if (customization.material) {
+    parts.push(`<p><strong>Material:</strong> ${customization.material}</p>`);
+  }
+
+  if (Array.isArray(customization.extras) && customization.extras.length) {
+    parts.push(`<p><strong>Extras:</strong> ${customization.extras.join(', ')}</p>`);
+  }
+
+  if (customization.note) {
+    parts.push(`<p><strong>Nota:</strong> ${customization.note}</p>`);
+  }
+
+  return parts.join('');
+};
+
+const increaseQuantity = (productId) => {
+  const item = cart.find((entry) => entry.id === productId);
+  if (!item) return;
+  item.quantity += 1;
+  saveCart();
+  renderCart();
+};
+
+const decreaseQuantity = (productId) => {
+  const item = cart.find((entry) => entry.id === productId);
+  if (!item) return;
+
+  item.quantity -= 1;
+
+  if (item.quantity <= 0) {
+    const index = cart.findIndex((entry) => entry.id === productId);
+    if (index !== -1) {
+      cart.splice(index, 1);
+    }
+  }
+
+  saveCart();
+  renderCart();
+};
+
+const removeFromCart = (productId) => {
+  const index = cart.findIndex((entry) => entry.id === productId);
+  if (index === -1) return;
+  cart.splice(index, 1);
+  saveCart();
+  renderCart();
+};
+
+const renderSummary = () => {
+  const subtotal = getSubtotal();
+
+  summaryContent.innerHTML = `
+    <p>Subtotal: ${formatPrice(subtotal)}</p>
+    <p>Total: ${formatPrice(subtotal)}</p>
+    <button type="button" id="go-to-checkout" ${cart.length ? '' : 'disabled'}>
+      Continuar al pago
+    </button>
+  `;
+
+  const goToCheckoutButton = document.querySelector('#go-to-checkout');
+
+  if (goToCheckoutButton && cart.length) {
+    goToCheckoutButton.addEventListener('click', () => {
+      window.location.href = './pages/checkout-v4.html';
+    });
+  }
+};
+
+export const renderCart = () => {
+  if (!cart.length) {
+    cartItemsContainer.innerHTML = '<p>Tu carrito está vacío.</p>';
+    renderSummary();
+    return;
+  }
+
+  cartItemsContainer.innerHTML = '';
+
+  cart.forEach((item) => {
+    const article = document.createElement('article');
+    article.className = 'product-card';
+
+    article.innerHTML = `
+      <h3>${item.name}</h3>
+      ${formatCustomization(item.customization)}
+      <p><strong>Cantidad:</strong> ${item.quantity}</p>
+      <p><strong>Precio unitario:</strong> ${formatPrice(item.price, item.currency)}</p>
+      <p><strong>Subtotal:</strong> ${formatPrice(item.price * item.quantity, item.currency)}</p>
+      <div style="display:flex;gap:12px;margin-top:12px;">
+        <button type="button" data-action="decrease" data-id="${item.id}">-</button>
+        <button type="button" data-action="increase" data-id="${item.id}">+</button>
+        <button type="button" data-action="remove" data-id="${item.id}">🗑</button>
+      </div>
+    `;
+
+    cartItemsContainer.appendChild(article);
+  });
+
+  renderSummary();
+};
+
+cartItemsContainer.addEventListener('click', (event) => {
+  const button = event.target.closest('button[data-action]');
+  if (!button) return;
+
+  const { action, id } = button.dataset;
+
+  if (action === 'decrease') {
+    decreaseQuantity(id);
+    return;
+  }
+
+  if (action === 'increase') {
+    increaseQuantity(id);
+    return;
+  }
+
+  if (action === 'remove') {
+    removeFromCart(id);
+  }
+});
+
+export const addToCart = (product) => {
+  const existingItem = cart.find((item) => item.id === product.id);
+
+  if (existingItem) {
+    existingItem.quantity += 1;
+  } else {
+    cart.push(
+      normalizeCartItem({
+        ...product,
+        quantity: 1
+      })
+    );
+  }
+
+  saveCart();
+  renderCart();
+};
+
+saveCart();
+renderCart();

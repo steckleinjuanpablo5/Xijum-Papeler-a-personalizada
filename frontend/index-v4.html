@@ -3,46 +3,30 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Xijúm | Papelería creativa y personalizada</title>
+    <title>Xijúm | Personalización</title>
     <link rel="stylesheet" href="./assets/css/main.css" />
-    <link rel="stylesheet" href="./assets/css/personalization-v1.css" />
   </head>
   <body>
     <header class="site-header">
       <div class="container">
-        <a href="./index-v9.html" class="brand"><span>Xijúm</span></a>
-        <nav class="main-nav" aria-label="Navegación principal">
-          <ul>
-            <li><a href="#hero">Inicio</a></li>
-            <li><a href="#catalogo">Catálogo</a></li>
-            <li><a href="#carrito">Carrito</a></li>
-          </ul>
-        </nav>
+        <a href="./index-v4.html" class="brand"><span>Xijúm</span></a>
       </div>
     </header>
 
     <main>
-      <section id="hero" class="hero-section">
-        <div class="container">
-          <p>Tienda online</p>
-          <h1>Papelería creativa y personalizada</h1>
-          <p>Explora productos de Xijúm, personaliza libretas y agendas, agrégalos al carrito y finaliza tu compra.</p>
-          <a href="#catalogo">Ver catálogo</a>
-        </div>
-      </section>
-
       <section id="catalogo" class="catalog-section" aria-labelledby="catalog-title">
         <div class="container">
           <header>
-            <p>Colección</p>
+            <p>Catálogo con personalización</p>
             <h2 id="catalog-title">Catálogo</h2>
           </header>
 
           <div class="catalog-layout">
-            <aside class="filters-panel" aria-label="Filtros del catálogo">
+            <aside class="filters-panel">
               <h3>Filtros</h3>
               <label for="search">Buscar producto</label>
               <input id="search" type="search" placeholder="Buscar por nombre" />
+
               <label for="category">Categoría</label>
               <select id="category">
                 <option value="all">Todas</option>
@@ -72,6 +56,7 @@
           <header>
             <h2 id="summary-title">Resumen de compra</h2>
           </header>
+
           <div class="summary-content">
             <p>Subtotal: $0.00</p>
             <p>Total: $0.00</p>
@@ -83,7 +68,13 @@
 
     <div id="customization-overlay" hidden></div>
 
-    <section id="customization-modal" aria-labelledby="customization-title" aria-modal="true" role="dialog" hidden>
+    <section
+      id="customization-modal"
+      aria-labelledby="customization-title"
+      aria-modal="true"
+      role="dialog"
+      hidden
+    >
       <div class="customization-modal__content">
         <button type="button" id="customization-close" aria-label="Cerrar personalización">×</button>
 
@@ -131,6 +122,6 @@
       </div>
     </footer>
 
-    <script type="module" src="./assets/js/catalog-v7.js"></script>
+    <script type="module" src="./assets/js/catalog-v4.js"></script>
   </body>
 </html>

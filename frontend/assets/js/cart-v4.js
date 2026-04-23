@@ -1,8 +1,4 @@
 ﻿const STORAGE_KEY = 'xijum_cart_v2';
-const API_BASE_URL = 'https://xijum-backend.onrender.com';
-
-const checkoutItemsContainer = document.querySelector('#checkout-items');
-const checkoutSummaryContainer = document.querySelector('#checkout-summary');
 
 const normalizeCartItem = (item) => {
   const quantity = Number(item?.quantity);
@@ -34,6 +30,17 @@ const getStoredCart = () => {
 };
 
 const cart = getStoredCart();
+
+const cartItemsContainer = document.querySelector('.cart-items');
+const summaryContent = document.querySelector('.summary-content');
+
+if (!cartItemsContainer || !summaryContent) {
+  throw new Error('Cart UI elements were not found in index-v8.html');
+}
+
+const saveCart = () => {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(cart));
+};
 
 const formatPrice = (price, currency = 'MXN') =>
   new Intl.NumberFormat('es-MX', {
@@ -70,16 +77,34 @@ const formatCustomization = (customization) => {
   return parts.join('');
 };
 
-const renderItems = () => {
+const renderSummary = () => {
+  const subtotal = getSubtotal();
+
+  summaryContent.innerHTML = `
+    <p>Subtotal: ${formatPrice(subtotal)}</p>
+    <p>Total: ${formatPrice(subtotal)}</p>
+    <button type="button" id="go-to-checkout" ${cart.length ? '' : 'disabled'}>
+      Continuar al pago
+    </button>
+  `;
+
+  const goToCheckoutButton = document.querySelector('#go-to-checkout');
+
+  if (goToCheckoutButton && cart.length) {
+    goToCheckoutButton.addEventListener('click', () => {
+      window.location.href = './pages/checkout-v3.html';
+    });
+  }
+};
+
+export const renderCart = () => {
   if (!cart.length) {
-    checkoutItemsContainer.innerHTML = `
-      <p>No hay productos en tu carrito.</p>
-      <p><a href="../index-v9.html#catalogo">Volver al catálogo</a></p>
-    `;
+    cartItemsContainer.innerHTML = '<p>Tu carrito está vacío.</p>';
+    renderSummary();
     return;
   }
 
-  checkoutItemsContainer.innerHTML = '';
+  cartItemsContainer.innerHTML = '';
 
   cart.forEach((item) => {
     const article = document.createElement('article');
@@ -93,61 +118,29 @@ const renderItems = () => {
       <p><strong>Subtotal:</strong> ${formatPrice(item.price * item.quantity, item.currency)}</p>
     `;
 
-    checkoutItemsContainer.appendChild(article);
+    cartItemsContainer.appendChild(article);
   });
+
+  renderSummary();
 };
 
-const startCheckout = async () => {
-  try {
-    const response = await fetch(`${API_BASE_URL}/api/create-checkout-session`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ items: cart })
-    });
+export const addToCart = (product) => {
+  const existingItem = cart.find((item) => item.id === product.id);
 
-    const data = await response.json();
-
-    if (!response.ok || !data.url) {
-      throw new Error(data.error || 'Unable to start checkout.');
-    }
-
-    window.location.href = data.url;
-  } catch (error) {
-    console.error(error);
-    alert('No fue posible iniciar el pago. Intenta de nuevo.');
+  if (existingItem) {
+    existingItem.quantity += 1;
+  } else {
+    cart.push(
+      normalizeCartItem({
+        ...product,
+        quantity: 1
+      })
+    );
   }
+
+  saveCart();
+  renderCart();
 };
 
-const renderSummary = () => {
-  const subtotal = getSubtotal();
-
-  if (!cart.length) {
-    checkoutSummaryContainer.innerHTML = `
-      <p>Subtotal: ${formatPrice(0)}</p>
-      <p>Total: ${formatPrice(0)}</p>
-      <button type="button" disabled>Ir al pago seguro</button>
-    `;
-    return;
-  }
-
-  checkoutSummaryContainer.innerHTML = `
-    <p>Subtotal: ${formatPrice(subtotal)}</p>
-    <p>Total: ${formatPrice(subtotal)}</p>
-    <button type="button" id="start-checkout">Ir al pago seguro</button>
-  `;
-
-  const startCheckoutButton = document.querySelector('#start-checkout');
-
-  if (startCheckoutButton) {
-    startCheckoutButton.addEventListener('click', async () => {
-      startCheckoutButton.disabled = true;
-      startCheckoutButton.textContent = 'Redirigiendo...';
-      await startCheckout();
-      startCheckoutButton.disabled = false;
-      startCheckoutButton.textContent = 'Ir al pago seguro';
-    });
-  }
-};
-
-renderItems();
-renderSummary();
+saveCart();
+renderCart();
