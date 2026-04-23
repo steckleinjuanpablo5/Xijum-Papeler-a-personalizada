@@ -336,3 +336,282 @@
     width: 100%;
   }
 }
+
+/* === Fase 8 | Sistema visual base Xijúm === */
+:root {
+  --xijum-bg: #f7f4ef;
+  --xijum-surface: #fffdf9;
+  --xijum-surface-2: #f3ede3;
+  --xijum-border: #dfd4c6;
+  --xijum-text: #2f241b;
+  --xijum-text-soft: #6e5b4c;
+  --xijum-accent: #b6845a;
+  --xijum-accent-dark: #946847;
+  --xijum-shadow: 0 10px 30px rgba(93, 63, 39, 0.08);
+  --xijum-radius-lg: 24px;
+  --xijum-radius-md: 16px;
+  --xijum-radius-sm: 12px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background:
+    radial-gradient(circle at top left, rgba(182, 132, 90, 0.10), transparent 28%),
+    linear-gradient(180deg, #fbf8f3 0%, var(--xijum-bg) 100%);
+  color: var(--xijum-text);
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.55;
+}
+
+.container {
+  width: min(1180px, calc(100% - 48px));
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: blur(10px);
+  background: rgba(251, 248, 243, 0.85);
+  border-bottom: 1px solid rgba(223, 212, 198, 0.7);
+}
+
+.site-header .container {
+  min-height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  color: var(--xijum-text);
+}
+
+.main-nav a {
+  color: var(--xijum-text-soft);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.main-nav a:hover,
+.main-nav a:focus-visible,
+.brand:hover,
+.brand:focus-visible {
+  color: var(--xijum-accent-dark);
+}
+
+.hero-section {
+  padding: 72px 0 48px;
+}
+
+.hero-section .container > p:first-child {
+  color: var(--xijum-text-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.82rem;
+  margin-bottom: 0.9rem;
+}
+
+.hero-section h1 {
+  font-size: clamp(2.3rem, 5vw, 4.4rem);
+  line-height: 1.05;
+  margin-bottom: 1rem;
+  max-width: 10ch;
+}
+
+.hero-section .container > p:not(:first-child) {
+  max-width: 720px;
+  color: var(--xijum-text-soft);
+  font-size: 1.08rem;
+}
+
+.hero-section a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1.3rem;
+  padding: 0.95rem 1.3rem;
+  border-radius: 999px;
+  background: var(--xijum-accent);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  box-shadow: var(--xijum-shadow);
+}
+
+.hero-section a:hover,
+.hero-section a:focus-visible {
+  background: var(--xijum-accent-dark);
+}
+
+.catalog-section,
+.cart-section,
+.summary-section {
+  padding-top: 18px;
+}
+
+.catalog-section header > p,
+.cart-section header > p {
+  color: var(--xijum-text-soft);
+}
+
+.catalog-section h2,
+.cart-section h2,
+.summary-section h2,
+.summary-section h1 {
+  font-size: clamp(2rem, 3vw, 3rem);
+  line-height: 1.1;
+  margin-bottom: 0.8rem;
+}
+
+.filters-panel,
+.product-card,
+.summary-content,
+.cart-items > p,
+.customization-modal__content {
+  background: rgba(255, 253, 249, 0.94);
+  border: 1px solid var(--xijum-border);
+  box-shadow: var(--xijum-shadow);
+}
+
+.filters-panel h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.filters-panel input,
+.filters-panel select,
+.customization-modal__content select,
+.customization-modal__content textarea {
+  background: #fffdfa;
+  color: var(--xijum-text);
+  border: 1px solid var(--xijum-border);
+}
+
+.filters-panel input::placeholder,
+.customization-modal__content textarea::placeholder {
+  color: #9a8777;
+}
+
+button,
+.summary-content button,
+.product-card button,
+.customization-actions button,
+#customization-close {
+  appearance: none;
+  border: 1px solid var(--xijum-border);
+  background: #fff;
+  color: var(--xijum-text);
+  border-radius: 14px;
+  font-weight: 700;
+  transition:
+    transform 0.18s ease,
+    background 0.18s ease,
+    color 0.18s ease,
+    border-color 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+button:hover,
+.summary-content button:hover,
+.product-card button:hover,
+.customization-actions button:hover,
+#customization-close:hover {
+  transform: translateY(-1px);
+  background: var(--xijum-accent);
+  color: #fff;
+  border-color: var(--xijum-accent);
+  box-shadow: 0 10px 24px rgba(182, 132, 90, 0.18);
+}
+
+button:disabled,
+.summary-content button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.product-card {
+  border-radius: var(--xijum-radius-lg);
+}
+
+.product-card > p:first-child {
+  color: var(--xijum-text-soft);
+  font-size: 0.95rem;
+}
+
+.product-card h3 {
+  font-size: 1.9rem;
+  line-height: 1.1;
+}
+
+.product-card p {
+  color: var(--xijum-text-soft);
+}
+
+.product-card strong,
+.summary-content strong,
+.cart-items strong {
+  color: var(--xijum-text);
+}
+
+.cart-items .product-card,
+#checkout-items .product-card {
+  border-radius: 22px;
+}
+
+.summary-content {
+  border-radius: 22px;
+}
+
+.summary-content p {
+  font-size: 1.05rem;
+}
+
+#customization-extras label {
+  background: #fffaf4;
+  border: 1px solid var(--xijum-border);
+}
+
+#customization-extras label:hover {
+  border-color: var(--xijum-accent);
+  background: #fff6ec;
+}
+
+.site-footer {
+  margin-top: 56px;
+  border-top: 1px solid rgba(223, 212, 198, 0.7);
+  background: rgba(255, 251, 245, 0.7);
+}
+
+.site-footer .container {
+  min-height: 88px;
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: min(100% - 28px, 1180px);
+  }
+
+  .site-header .container {
+    min-height: 66px;
+  }
+
+  .hero-section {
+    padding-top: 56px;
+  }
+
+  .hero-section h1 {
+    max-width: none;
+  }
+}
