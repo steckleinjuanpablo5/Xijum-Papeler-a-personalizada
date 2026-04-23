@@ -1134,3 +1134,129 @@ body {
     flex: 1 1 auto;
   }
 }
+
+/* === Fase 8 | Paso 5: detalles finales y responsive === */
+
+.cart-section .product-card,
+#checkout-items .product-card {
+  gap: 0.9rem;
+}
+
+.cart-section .product-card p,
+#checkout-items .product-card p {
+  line-height: 1.5;
+}
+
+.cart-items .product-card > div[style*="display:flex"] {
+  justify-content: flex-start !important;
+  align-items: center;
+}
+
+.cart-items button[data-action] {
+  min-width: 56px;
+  width: auto;
+  padding: 0.8rem 1rem;
+  border-radius: 12px;
+  font-size: 1rem;
+}
+
+.cart-items button[data-action="remove"] {
+  min-width: 68px;
+}
+
+.summary-content p,
+#checkout-summary p {
+  margin-bottom: 0.7rem;
+}
+
+.summary-content button,
+#checkout-summary button {
+  margin-top: 1.25rem;
+}
+
+#checkout-items .product-card {
+  padding: 1.5rem;
+}
+
+#checkout-items .product-card h3 {
+  margin-bottom: 0.5rem;
+}
+
+.site-footer .container p {
+  color: #7a6657;
+}
+
+@media (max-width: 900px) {
+  .catalog-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-section h1 {
+    font-size: clamp(2.2rem, 8vw, 3.3rem);
+  }
+
+  .filters-panel,
+  .product-card,
+  .summary-content,
+  #checkout-summary,
+  .customization-modal__content {
+    border-radius: 20px;
+  }
+}
+
+@media (max-width: 640px) {
+  .site-header .container {
+    flex-direction: column;
+    gap: 0.8rem;
+    padding-top: 0.9rem;
+    padding-bottom: 0.9rem;
+  }
+
+  .main-nav ul {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .hero-section .container {
+    padding: 28px 20px;
+  }
+
+  .hero-section .container > p:not(:first-child) {
+    font-size: 1rem;
+  }
+
+  .filters-panel {
+    padding: 1.2rem;
+  }
+
+  .product-card {
+    padding: 1.2rem;
+  }
+
+  .product-card h3,
+  .cart-section .product-card h3,
+  #checkout-items .product-card h3 {
+    font-size: 1.5rem;
+  }
+
+  .cart-items .product-card > div[style*="display:flex"] {
+    gap: 0.65rem !important;
+  }
+
+  .cart-items button[data-action] {
+    flex: 0 0 auto;
+    min-width: 54px;
+    padding: 0.75rem 0.9rem;
+  }
+
+  .summary-content,
+  #checkout-summary {
+    padding: 1.2rem;
+  }
+
+  .summary-content button,
+  #checkout-summary button {
+    padding: 1rem;
+    font-size: 1rem;
+  }
+}
