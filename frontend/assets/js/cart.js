@@ -1,4 +1,16 @@
-﻿const STORAGE_KEY = 'xijum_cart';
+﻿const STORAGE_KEY = 'xijum_cart_v2';
+
+const normalizeCartItem = (item) => {
+  const quantity = Number(item?.quantity);
+  const price = Number(item?.price);
+
+  return {
+    ...item,
+    quantity: Number.isFinite(quantity) && quantity > 0 ? quantity : 1,
+    price: Number.isFinite(price) ? price : 0,
+    currency: item?.currency || 'MXN'
+  };
+};
 
 const getStoredCart = () => {
   const rawCart = localStorage.getItem(STORAGE_KEY);
@@ -9,7 +21,9 @@ const getStoredCart = () => {
 
   try {
     const parsedCart = JSON.parse(rawCart);
-    return Array.isArray(parsedCart) ? parsedCart : [];
+    return Array.isArray(parsedCart)
+      ? parsedCart.map(normalizeCartItem).filter((item) => item.id && item.name)
+      : [];
   } catch {
     return [];
   }
@@ -52,7 +66,7 @@ const renderSummary = () => {
 
   if (goToCheckoutButton && cart.length) {
     goToCheckoutButton.addEventListener('click', () => {
-      window.location.href = './pages/checkout.html';
+      window.location.href = './pages/checkout-v2.html';
     });
   }
 };
@@ -89,14 +103,17 @@ export const addToCart = (product) => {
   if (existingItem) {
     existingItem.quantity += 1;
   } else {
-    cart.push({
-      ...product,
-      quantity: 1
-    });
+    cart.push(
+      normalizeCartItem({
+        ...product,
+        quantity: 1
+      })
+    );
   }
 
   saveCart();
   renderCart();
 };
 
+saveCart();
 renderCart();

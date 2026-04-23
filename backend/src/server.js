@@ -63,7 +63,7 @@ app.post('/api/create-checkout-session', async (req, res) => {
       mode: 'payment',
       line_items,
       success_url: `${process.env.FRONTEND_URL}/pages/success.html`,
-      cancel_url: `${process.env.FRONTEND_URL}/pages/checkout.html`
+      cancel_url: `${process.env.FRONTEND_URL}/pages/checkout-v2.html`
     });
 
     return res.status(200).json({ url: session.url });
@@ -76,3 +76,4 @@ app.post('/api/create-checkout-session', async (req, res) => {
 app.listen(port, () => {
   console.log(`Backend listening on port ${port}`);
 });
+
