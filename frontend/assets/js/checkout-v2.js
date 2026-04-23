@@ -1,13 +1,12 @@
-﻿import { FRONTEND_CONFIG } from './config.js';
-
-const checkoutItemsContainer = document.querySelector('#checkout-items');
+﻿const checkoutItemsContainer = document.querySelector('#checkout-items');
 const checkoutSummaryContainer = document.querySelector('#checkout-summary');
 
 if (!checkoutItemsContainer || !checkoutSummaryContainer) {
-  throw new Error('Checkout UI elements were not found in checkout.html');
+  throw new Error('Checkout UI elements were not found in checkout-v2.html');
 }
 
 const STORAGE_KEY = 'xijum_cart_v2';
+const API_BASE_URL = 'https://xijum-backend.onrender.com';
 
 const normalizeCartItem = (item) => {
   const quantity = Number(item?.quantity);
@@ -82,16 +81,13 @@ const renderItems = () => {
 
 const startCheckout = async () => {
   try {
-    const response = await fetch(
-      `${FRONTEND_CONFIG.API_BASE_URL}/api/create-checkout-session`,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ items: cart })
-      }
-    );
+    const response = await fetch(`${API_BASE_URL}/api/create-checkout-session`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ items: cart })
+    });
 
     const data = await response.json();
 
