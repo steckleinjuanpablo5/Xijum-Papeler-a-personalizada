@@ -1,11 +1,50 @@
-const asset = (file) => new URL(../assets/img/products/${file}, import.meta.url).href;
+const asset = (file) => new URL('../assets/img/products/' + file, import.meta.url).href;
 
-export const PRODUCT_IMAGE_MAP = { 'agenda semanal': asset('agenda-semanal.jpg'), 'agenda diaria': asset('agenda-diaria.jpg'), 'agenda citas': asset('agenda-citas.jpg'), 'agenda de citas': asset('agenda-citas.jpg'), 'agenda docentes': asset('agenda-docentes.jpg'), 'agenda mini': asset('agenda-mini.jpg'), 'agenda de bolsillo': asset('agenda-mini.jpg'), 'agenda emprendedores': asset('agenda-semanal.jpg'), 'planner carta': asset('planner-carta.jpg'), 'planner media carta': asset('planner-media-carta.jpg'), 'planner mini': asset('agenda-mini.jpg'), 'planner mensual': asset('planner-carta.jpg'), 'calendario refri': asset('planner-carta.jpg'),
+export const PRODUCT_IMAGE_MAP = {
+  'agenda semanal': asset('agenda-semanal.jpg'),
+  'agenda diaria': asset('agenda-diaria.jpg'),
+  'agenda citas': asset('agenda-citas.jpg'),
+  'agenda de citas': asset('agenda-citas.jpg'),
+  'agenda docentes': asset('agenda-docentes.jpg'),
+  'agenda mini': asset('agenda-mini.jpg'),
+  'agenda de bolsillo': asset('agenda-mini.jpg'),
+  'agenda emprendedores': asset('agenda-semanal.jpg'),
+  'planner carta': asset('planner-carta.jpg'),
+  'planner media carta': asset('planner-media-carta.jpg'),
+  'planner mini': asset('agenda-mini.jpg'),
+  'planner mensual': asset('planner-carta.jpg'),
+  'calendario refri': asset('planner-carta.jpg'),
 
-'libreta journal': asset('libreta-journal.jpg'), 'bullet journal': asset('libreta-journal.jpg'), 'libreta hojas blancas': asset('libreta-hojas-blancas.jpg'), 'libreta de hojas blancas': asset('libreta-hojas-blancas.jpg'), 'libreta hojas de raya': asset('libreta-hojas-de-raya.jpg'), 'libreta de raya': asset('libreta-hojas-de-raya.jpg'), 'libreta mini': asset('libreta-mini.jpg'), 'libreta chica': asset('libreta-chica.jpg'), 'libreta chica crema': asset('libreta-chica.jpg'), 'libreta cosida': asset('libreta-hojas-de-raya.jpg'), 'libreta post it': asset('libreta-cuadrada-bolsillo.jpg'), 'libreta post it chica': asset('libreta-cuadrada-bolsillo.jpg'),
+  'libreta journal': asset('libreta-journal.jpg'),
+  'bullet journal': asset('libreta-journal.jpg'),
+  'libreta hojas blancas': asset('libreta-hojas-blancas.jpg'),
+  'libreta de hojas blancas': asset('libreta-hojas-blancas.jpg'),
+  'libreta hojas de raya': asset('libreta-hojas-de-raya.jpg'),
+  'libreta de raya': asset('libreta-hojas-de-raya.jpg'),
+  'libreta mini': asset('libreta-mini.jpg'),
+  'libreta chica': asset('libreta-chica.jpg'),
+  'libreta chica crema': asset('libreta-chica.jpg'),
+  'libreta cosida': asset('libreta-hojas-de-raya.jpg'),
+  'libreta post it': asset('libreta-cuadrada-bolsillo.jpg'),
+  'libreta post it chica': asset('libreta-cuadrada-bolsillo.jpg'),
 
-'adventure book': asset('adventure-book.jpg'), 'historia de mama': asset('historia-de-mama.jpg'), 'tarjetas': asset('tarjetas.jpg'), 'juego': asset('tarjetas.jpg'), 'portarretratos': asset('tarjetas.jpg'),
+  'adventure book': asset('adventure-book.jpg'),
+  'historia de mama': asset('historia-de-mama.jpg'),
+  'tarjetas': asset('tarjetas.jpg'),
+  'juego': asset('tarjetas.jpg'),
+  'portarretratos': asset('tarjetas.jpg'),
 
-'stickers 10 pack': asset('stickers-10-pack.jpg'), 'stickers planilla': asset('stickers-planilla.jpg'), 'confeti stickers': asset('confetti-stickers.jpg'), 'organizador escritorio': asset('stickers-planilla.jpg'), 'separadores de iman': asset('stickers-planilla.jpg'), 'separadores de imán': asset('stickers-planilla.jpg') };
+  'stickers 10 pack': asset('stickers-10-pack.jpg'),
+  'stickers planilla': asset('stickers-planilla.jpg'),
+  'confeti stickers': asset('confetti-stickers.jpg'),
+  'organizador escritorio': asset('stickers-planilla.jpg'),
+  'separadores de iman': asset('stickers-planilla.jpg'),
+  'separadores de imán': asset('stickers-planilla.jpg')
+};
 
-export const CATEGORY_IMAGE_FALLBACKS = { 'agendas y planeadores': asset('fallback-agendas.jpg'), 'libretas': asset('fallback-libretas.jpg'), 'regalos': asset('fallback-regalos.jpg'), 'complementos': asset('fallback-complementos.jpg') };
+export const CATEGORY_IMAGE_FALLBACKS = {
+  'agendas y planeadores': asset('fallback-agendas.jpg'),
+  'libretas': asset('fallback-libretas.jpg'),
+  'regalos': asset('fallback-regalos.jpg'),
+  'complementos': asset('fallback-complementos.jpg')
+};
