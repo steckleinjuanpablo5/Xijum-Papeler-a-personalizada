@@ -753,3 +753,203 @@ button:disabled,
     font-size: 1.6rem;
   }
 }
+
+/* === Fase 8 | Paso 3: identidad visual más fuerte === */
+
+body {
+  background:
+    radial-gradient(circle at top left, rgba(201, 151, 104, 0.16), transparent 24%),
+    radial-gradient(circle at top right, rgba(182, 132, 90, 0.10), transparent 20%),
+    linear-gradient(180deg, #fcfaf6 0%, #f6efe6 100%);
+}
+
+.site-header {
+  background: rgba(255, 248, 240, 0.92);
+  border-bottom: 1px solid #ead9c8;
+}
+
+.brand {
+  font-size: 1.28rem;
+  font-weight: 800;
+  color: #7d5536;
+}
+
+.main-nav a {
+  color: #6e5643;
+  font-weight: 600;
+}
+
+.main-nav a:hover,
+.main-nav a:focus-visible {
+  background: rgba(182, 132, 90, 0.14);
+  color: #8b5e3c;
+}
+
+.hero-section .container {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 85% 20%, rgba(199, 147, 104, 0.22), transparent 18%),
+    radial-gradient(circle at 78% 75%, rgba(182, 132, 90, 0.14), transparent 16%),
+    linear-gradient(135deg, #fffaf2 0%, #f8ead9 100%);
+  border: 1px solid #ead9c6;
+  border-radius: 36px;
+  padding: 56px;
+  box-shadow: 0 24px 60px rgba(125, 85, 54, 0.10);
+}
+
+.hero-section .container::after {
+  content: '';
+  position: absolute;
+  right: -50px;
+  top: -50px;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: rgba(199, 147, 104, 0.10);
+}
+
+.hero-section h1 {
+  font-size: clamp(2.5rem, 5vw, 4.8rem);
+  line-height: 1;
+  max-width: 10ch;
+  margin-bottom: 1rem;
+  color: #2f241b;
+}
+
+.hero-section .container > p:not(:first-child) {
+  max-width: 760px;
+  font-size: 1.1rem;
+  color: #6f5b4a;
+}
+
+.hero-section a {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1.4rem;
+  padding: 1rem 1.45rem;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #c79368 0%, #b6845a 100%);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  box-shadow: 0 14px 30px rgba(182, 132, 90, 0.24);
+}
+
+.hero-section a:hover,
+.hero-section a:focus-visible {
+  background: linear-gradient(180deg, #b6845a 0%, #9d6f49 100%);
+  color: #fff;
+}
+
+.catalog-section header > p,
+.cart-section header > p,
+.summary-section header > p {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.82rem;
+  color: #8c7461;
+}
+
+.catalog-section h2,
+.cart-section h2,
+.summary-section h2,
+.summary-section h1 {
+  font-size: clamp(2.2rem, 3vw, 3.2rem);
+}
+
+.filters-panel {
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.94) 0%, rgba(251,243,233,0.95) 100%);
+  border: 1px solid #e5d3c0;
+  box-shadow: 0 16px 40px rgba(110, 78, 50, 0.07);
+}
+
+.filters-panel h3 {
+  font-size: 1.85rem;
+  color: #3b2d21;
+}
+
+.catalog-grid {
+  gap: 1.9rem;
+}
+
+.product-card {
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, #fffdf9 0%, #fff5ea 100%);
+  border: 1px solid #ead8c5;
+  box-shadow: 0 18px 40px rgba(110, 78, 50, 0.08);
+}
+
+.product-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 7px;
+  background: linear-gradient(90deg, #e7c4a1 0%, #c79368 100%);
+}
+
+.product-card > p:first-child {
+  margin-top: 0.25rem;
+  color: #9a7a62;
+  font-weight: 700;
+}
+
+.product-card h3 {
+  color: #2f241b;
+}
+
+.product-card p:not(:first-child) {
+  color: #5d4b3d;
+}
+
+.product-card button,
+.summary-content button,
+.customization-actions button {
+  background: linear-gradient(180deg, #c79368 0%, #b6845a 100%);
+  color: #fff;
+  border: none;
+  border-radius: 16px;
+  padding: 1rem 1rem;
+  box-shadow: 0 14px 28px rgba(182, 132, 90, 0.20);
+}
+
+.product-card button:hover,
+.summary-content button:hover,
+.customization-actions button:hover {
+  background: linear-gradient(180deg, #b6845a 0%, #9d6f49 100%);
+  color: #fff;
+}
+
+.summary-content {
+  background: linear-gradient(180deg, #fffdf9 0%, #fff4e8 100%);
+  box-shadow: 0 18px 40px rgba(110, 78, 50, 0.08);
+}
+
+.cart-items .product-card,
+#checkout-items .product-card {
+  background: linear-gradient(180deg, #fffdf9 0%, #fff4e8 100%);
+}
+
+.site-footer {
+  background: rgba(255, 248, 240, 0.95);
+  border-top: 1px solid #ead9c8;
+}
+
+@media (max-width: 768px) {
+  .hero-section .container {
+    padding: 34px 24px;
+    border-radius: 26px;
+  }
+
+  .hero-section h1 {
+    max-width: none;
+  }
+}
