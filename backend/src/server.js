@@ -62,7 +62,7 @@ app.post('/api/create-checkout-session', async (req, res) => {
     const session = await stripe.checkout.sessions.create({
       mode: 'payment',
       line_items,
-      success_url: `${process.env.FRONTEND_URL}/pages/success.html`,
+      success_url: `${process.env.FRONTEND_URL}/pages/success-v2.html`,
       cancel_url: `${process.env.FRONTEND_URL}/pages/checkout-v2.html`
     });
 
@@ -76,4 +76,5 @@ app.post('/api/create-checkout-session', async (req, res) => {
 app.listen(port, () => {
   console.log(`Backend listening on port ${port}`);
 });
+
 

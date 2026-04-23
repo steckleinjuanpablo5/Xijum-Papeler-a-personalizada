@@ -51,6 +51,30 @@ const formatPrice = (price, currency = 'MXN') =>
 const getSubtotal = () =>
   cart.reduce((total, item) => total + item.price * item.quantity, 0);
 
+const increaseQuantity = (productId) => {
+  const item = cart.find((entry) => entry.id === productId);
+
+  if (!item) {
+    return;
+  }
+
+  item.quantity += 1;
+  saveCart();
+  renderCart();
+};
+
+const removeFromCart = (productId) => {
+  const index = cart.findIndex((entry) => entry.id === productId);
+
+  if (index === -1) {
+    return;
+  }
+
+  cart.splice(index, 1);
+  saveCart();
+  renderCart();
+};
+
 const renderSummary = () => {
   const subtotal = getSubtotal();
 
@@ -89,6 +113,10 @@ export const renderCart = () => {
       <p>Cantidad: ${item.quantity}</p>
       <p>Precio unitario: ${formatPrice(item.price, item.currency)}</p>
       <p>Subtotal: ${formatPrice(item.price * item.quantity, item.currency)}</p>
+      <div class="cart-item-actions">
+        <button type="button" class="cart-action-button" data-action="increase" data-id="${item.id}">+</button>
+        <button type="button" class="cart-action-button cart-action-button--danger" data-action="remove" data-id="${item.id}">🗑</button>
+      </div>
     `;
 
     cartItemsContainer.appendChild(article);
@@ -96,6 +124,25 @@ export const renderCart = () => {
 
   renderSummary();
 };
+
+cartItemsContainer.addEventListener('click', (event) => {
+  const button = event.target.closest('button[data-action]');
+
+  if (!button) {
+    return;
+  }
+
+  const { action, id } = button.dataset;
+
+  if (action === 'increase') {
+    increaseQuantity(id);
+    return;
+  }
+
+  if (action === 'remove') {
+    removeFromCart(id);
+  }
+});
 
 export const addToCart = (product) => {
   const existingItem = cart.find((item) => item.id === product.id);
