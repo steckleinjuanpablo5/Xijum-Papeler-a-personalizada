@@ -1260,3 +1260,168 @@ body {
     font-size: 1rem;
   }
 }
+
+/* === Fase 8 | Paso 6: acabado final visual === */
+
+::selection {
+  background: rgba(182, 132, 90, 0.22);
+  color: #2f241b;
+}
+
+a,
+button,
+input,
+select,
+textarea {
+  transition:
+    color 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.catalog-section,
+.cart-section,
+.summary-section {
+  padding-top: 28px;
+}
+
+.catalog-section .container,
+.cart-section .container,
+.summary-section .container {
+  position: relative;
+}
+
+.hero-section .container,
+.filters-panel,
+.product-card,
+.summary-content,
+#checkout-summary,
+.customization-modal__content {
+  backdrop-filter: blur(6px);
+}
+
+.hero-section .container {
+  isolation: isolate;
+}
+
+.hero-section .container > p:first-child {
+  font-weight: 700;
+  color: #926f54;
+}
+
+.hero-section .container::before {
+  content: '';
+  position: absolute;
+  inset: auto 32px 24px auto;
+  width: 140px;
+  height: 140px;
+  border-radius: 24px;
+  background: linear-gradient(135deg, rgba(199, 147, 104, 0.12), rgba(182, 132, 90, 0.02));
+  transform: rotate(18deg);
+  z-index: 0;
+}
+
+.hero-section .container > * {
+  position: relative;
+  z-index: 1;
+}
+
+.filters-panel:hover,
+.product-card:hover,
+.summary-content:hover,
+#checkout-summary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 22px 44px rgba(110, 78, 50, 0.11);
+}
+
+.product-card {
+  min-height: 100%;
+}
+
+.product-card h3,
+.cart-section .product-card h3,
+#checkout-items .product-card h3 {
+  letter-spacing: -0.02em;
+}
+
+.product-card button,
+.summary-content button,
+#checkout-summary button,
+.customization-actions button {
+  letter-spacing: 0.01em;
+}
+
+.product-card button:focus-visible,
+.summary-content button:focus-visible,
+#checkout-summary button:focus-visible,
+.customization-actions button:focus-visible,
+#customization-close:focus-visible,
+.filters-panel input:focus-visible,
+.filters-panel select:focus-visible,
+.customization-modal__content select:focus-visible,
+.customization-modal__content textarea:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 4px rgba(182, 132, 90, 0.18),
+    0 10px 24px rgba(182, 132, 90, 0.16);
+}
+
+.filters-panel input:focus-visible,
+.filters-panel select:focus-visible,
+.customization-modal__content select:focus-visible,
+.customization-modal__content textarea:focus-visible {
+  border-color: #c79368;
+  background: #fff;
+  transform: none;
+}
+
+#customization-close {
+  background: #fff8f0;
+  color: #7f5d44;
+  border: 1px solid #e3d0bc;
+}
+
+#customization-close:hover {
+  background: #c79368;
+  color: #fff;
+  border-color: #c79368;
+}
+
+#customization-product-name {
+  color: #8b6c52;
+  font-weight: 600;
+}
+
+.summary-content p:last-of-type,
+#checkout-summary p:last-of-type {
+  margin-bottom: 0;
+}
+
+.site-footer {
+  position: relative;
+}
+
+.site-footer::before {
+  content: '';
+  display: block;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(182, 132, 90, 0.35), transparent);
+}
+
+@media (max-width: 768px) {
+  .hero-section .container::before {
+    width: 90px;
+    height: 90px;
+    right: 18px;
+    bottom: 18px;
+  }
+
+  .filters-panel:hover,
+  .product-card:hover,
+  .summary-content:hover,
+  #checkout-summary:hover {
+    transform: none;
+  }
+}
