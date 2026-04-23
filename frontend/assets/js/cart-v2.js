@@ -59,6 +59,23 @@ const increaseQuantity = (productId) => {
   renderCart();
 };
 
+const decreaseQuantity = (productId) => {
+  const item = cart.find((entry) => entry.id === productId);
+  if (!item) return;
+
+  item.quantity -= 1;
+
+  if (item.quantity <= 0) {
+    const index = cart.findIndex((entry) => entry.id === productId);
+    if (index !== -1) {
+      cart.splice(index, 1);
+    }
+  }
+
+  saveCart();
+  renderCart();
+};
+
 const removeFromCart = (productId) => {
   const index = cart.findIndex((entry) => entry.id === productId);
   if (index === -1) return;
@@ -106,6 +123,7 @@ export const renderCart = () => {
       <p>Precio unitario: ${formatPrice(item.price, item.currency)}</p>
       <p>Subtotal: ${formatPrice(item.price * item.quantity, item.currency)}</p>
       <div style="display:flex;gap:12px;margin-top:12px;">
+        <button type="button" data-action="decrease" data-id="${item.id}">-</button>
         <button type="button" data-action="increase" data-id="${item.id}">+</button>
         <button type="button" data-action="remove" data-id="${item.id}">🗑</button>
       </div>
@@ -122,6 +140,11 @@ cartItemsContainer.addEventListener('click', (event) => {
   if (!button) return;
 
   const { action, id } = button.dataset;
+
+  if (action === 'decrease') {
+    decreaseQuantity(id);
+    return;
+  }
 
   if (action === 'increase') {
     increaseQuantity(id);
